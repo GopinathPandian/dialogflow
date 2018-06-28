@@ -33,7 +33,7 @@ if($method == 'POST'){
 				$long = $response->coord->lon;
 				$lat = $response->coord->lat;
 				#$speech = "Longitude is {$long} and Latitude is {$lat}";
-				$speech = "http://api.openweathermap.org/data/2.5/weather?q={$text}&APPID=282def8ec7a8888ee244ce7c3b9880a0"
+				$speech = "http://api.openweathermap.org/data/2.5/weather?q={$text}&APPID=282def8ec7a8888ee244ce7c3b9880a0";
 			}
 			break;
 	}
