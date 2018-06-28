@@ -23,8 +23,9 @@ if($method == 'POST'){
 			break;
 		case 'what is the temperature of london':
 			$res = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=282def8ec7a8888ee244ce7c3b9880a0');
-			$response = json_decode($res)
+			$response = json_decode($res);
 			$speech = $response->coord->lon;
+			break;
 		default:
 			$speech = "Sorry, I didnt get that. Please ask me something else.";
 			break;
