@@ -23,13 +23,16 @@ if($method == 'POST'){
 			break;
 		default:
 			$res = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q={$text}&APPID=282def8ec7a8888ee244ce7c3b9880a0');
-			if ($res) {
-				$response = json_decode($res);
+			$response = json_decode($res);
+			if ($response->cod)
+			{
+				$speech = "Sorry, I don't that. Please ask me someother place.";
+			}
+			else
+			{	
 				$long = $response->coord->lon;
 				$lat = $response->coord->lat;
 				$speech = "Longitude is {$long} and Latitude is {$lat}";		
-			} else {
-				$speech = "Sorry, I don't that. Please ask me someother place.";	
 			}
 			break;
 	}
