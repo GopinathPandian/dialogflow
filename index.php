@@ -22,9 +22,9 @@ if($method == 'POST'){
 			$speech = "Yes, you can type anything here.";
 			break;
 		case 'what is the temperature of london':
-			$client = new GuzzleHttp\Client();
-			$res = $client->get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=282def8ec7a8888ee244ce7c3b9880a0');
-			$speech = "Okay I don't know that";
+			$res = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=282def8ec7a8888ee244ce7c3b9880a0');
+			$response = json_decode($res)
+			$speech = $response->coord->lon;
 		default:
 			$speech = "Sorry, I didnt get that. Please ask me something else.";
 			break;
