@@ -21,15 +21,16 @@ if($method == 'POST'){
 		case 'anything':
 			$speech = "Yes, you can type anything here.";
 			break;
-		case 'what is the temperature of london':
-			$res = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=282def8ec7a8888ee244ce7c3b9880a0');
-			$response = json_decode($res);
-			$long = $response->coord->lon;
-			$lat = $response->coord->lat;
-			$speech = "Longitude is {$long} and Latitude is {$lat}";
-			break;
 		default:
-			$speech = "Sorry, I didnt get that. Please ask me something else.";
+			$res = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q={$text}&APPID=282def8ec7a8888ee244ce7c3b9880a0');
+			if ($res) {
+				$response = json_decode($res);
+				$long = $response->coord->lon;
+				$lat = $response->coord->lat;
+				$speech = "Longitude is {$long} and Latitude is {$lat}";		
+			} else {
+				$speech = "Sorry, I don't that. Please ask me someother place.";	
+			}
 			break;
 	}
 
